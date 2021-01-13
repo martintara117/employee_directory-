@@ -4,7 +4,7 @@ import API from "../../utils/API";
 class Table extends React.Component {
   state = {
     employee: [],
-    origin: []
+    origin: [],
   };
 
   componentDidMount() {
@@ -14,15 +14,17 @@ class Table extends React.Component {
   searchApi() {
     API.getRandomUsers()
       .then((res) => this.setState({ employee: res.data.results }))
-      .then((res) => this.setState({ origin: this.state.employee}));
+      .then((res) => this.setState({ origin: this.state.employee }));
   }
 
-  filterMethod = event =>{
+  filterMethod = (event) => {
     let name = event.target.value;
     //   console.log(name)
-    let filteredArr = this.state.origin.filter(element => element.name.first.includes(name))
-    this.setState({employee: filteredArr})
-  }
+    let filteredArr = this.state.origin.filter((element) =>
+      element.name.first.includes(name)
+    );
+    this.setState({ employee: filteredArr });
+  };
 
   render() {
     return (
@@ -31,18 +33,17 @@ class Table extends React.Component {
           <input
             type="text"
             class="form-control"
-            placeholder="Recipient's username"
+            placeholder="Employee's name"
             aria-label="Recipient's username"
             aria-describedby="button-addon2"
             onChange={this.filterMethod}
           />
-          <div class="input-group-append">
-          </div>
+          <div class="input-group-append"></div>
         </div>
         <table className="table table-dark">
           <thead>
             <tr>
-              <th scope="col">Image</th>
+              <th scope="col">Picture ID</th>
               <th scope="col">Name</th>
               <th scope="col">Phone</th>
               <th scope="col">Email</th>
