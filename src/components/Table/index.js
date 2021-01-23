@@ -13,7 +13,10 @@ class Table extends React.Component {
 
   searchApi() {
     API.getRandomUsers()
-      .then((res) => this.setState({ employee: res.data.results }))
+      .then((res) =>
+        res.data.results.sort((a, b) => a.name.last.localeCompare(b.name.last))
+      )
+      .then((res) => this.setState({ employee: res }))
       .then((res) => this.setState({ origin: this.state.employee }));
   }
 
