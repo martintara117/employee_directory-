@@ -21,10 +21,12 @@ class Table extends React.Component {
   }
 
   filterMethod = (event) => {
-    let name = event.target.value;
+    let name = event.target.value.trim().toLowerCase();
     //   console.log(name)
-    let filteredArr = this.state.origin.filter((element) =>
-      element.name.first.includes(name)
+    let filteredArr = this.state.origin.filter(
+      (element) =>
+        element.name.first.toLowerCase().includes(name) ||
+        element.name.last.toLowerCase().includes(name)
     );
     this.setState({ employee: filteredArr });
   };
